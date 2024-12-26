@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Website</title>
+<style>
+body {
+  font-size: 16px;
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+nav {
+  background-color: #f0f0f0;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.accessibility-options {
+  display: flex;
+  align-items: center;
+}
+
+.accessibility-options button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+    transition: background-color 0.3s;
+}
+.accessibility-options button:hover{
+    background-color: #ddd;
+}
+.accessibility-options .screen-reader{
+    display: flex;
+    align-items: center;
+}
+.accessibility-options .screen-reader img{
+    height: 15px;
+    width: auto;
+    margin-right: 5px;
+}
+/* Contrast Styles */
+body.high-contrast {
+  background-color: #000;
+  color: #fff;
+}
+body.high-contrast nav {
+    background-color: #333;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="accessibility-options">
+    <div class="screen-reader">
+        <img src="speaker-icon.png" alt="Screen Reader">
+        <button id="screen-reader-toggle">Screen Reader</button>
+    </div>
+    <button id="font-size-decrease">A-</button>
+    <button id="font-size-reset">A</button>
+    <button id="font-size-increase">A+</button>
+    <button id="contrast-toggle">Toggle Contrast</button>
+  </div>
+</nav>
+
+<div style="margin-top: 60px; padding: 20px;">
+    <h1>Welcome to My Website</h1>
+    <p>This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text.</p>
+    <p>More text here. More text here. More text here. More text here. More text here. More text here. More text here. More text here.</p>
+</div>
+
+<script>
+const fontSizeDecrease = document.getElementById('font-size-decrease');
+const fontSizeReset = document.getElementById('font-size-reset');
+const fontSizeIncrease = document.getElementById('font-size-increase');
+const screenReaderToggle = document.getElementById('screen-reader-toggle');
+const contrastToggle = document.getElementById('contrast-toggle');
+let currentFontSize = 16;
+
+fontSizeDecrease.addEventListener('click', () => {
+    currentFontSize = Math.max(12, currentFontSize - 2);
+    document.body.style.fontSize = currentFontSize + 'px';
+});
+
+fontSizeReset.addEventListener('click', () => {
+    currentFontSize = 16;
+    document.body.style.fontSize = currentFontSize + 'px';
+});
+
+fontSizeIncrease.addEventListener('click', () => {
+    currentFontSize = Math.min(24, currentFontSize + 2);
+    document.body.style.fontSize = currentFontSize + 'px';
+});
+
+screenReaderToggle.addEventListener('click', () => {
+    alert("Screen reader toggled!");
+});
+
+contrastToggle.addEventListener('click', () => {
+  document.body.classList.toggle('high-contrast');
+});
+</script>
+
+</body>
+</html>
